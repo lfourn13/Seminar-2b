@@ -13,18 +13,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #STAT 540 Seminar 2B
 
-#Part 1
+#Part 1 - First time ggplot-ing
 
-install.packages("tidyverse", dependencies = TRUE)
-
+```{r tidyverse}
 library(tidyverse)
+```
 
 ###Do cars with big engines use more fuel than cars with small engines? 
-
+####mpg dataset
+```{r mpg dataframe}
 mpg
-
+```
+####Highway miles per gallon in function of engine displacement (L)
+```{r ggplot of mpg}
 ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy))
+```
 
-ggplot(data = <DATA>) + <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+####City miles per gallon in function of engine displacement (L)
+```{r barebones graphing template}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = cty))
+```
+
 
 
