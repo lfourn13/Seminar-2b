@@ -29,10 +29,23 @@ mpg
 ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy))
 ```
 
-####City miles per gallon in function of engine displacement (L)
 ```{r barebones graphing template}
-ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = cty))
+ggplot(data = mpg) + geom_smooth(mapping = aes(x = displ, y = hwy))
+ggplot(data = mpg) + geom_density_2d(mapping = aes(x = displ, y = hwy))
 ```
 
+####City miles per gallon in function of engine displacement (L)
+```{r ggplot of mpg for cty}
+ggplot(data = mpg) + geom_point(mapping = aes(x= displ, y = cty))
+```
 
+####Aestethic mappings
+#####color
+```{r aesthetic color}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+#####size
+```{r aesthetic size}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, size = class))
+```
 

@@ -66,13 +66,48 @@ ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy))
 
 ![](Seminar_2b_files/figure-html/ggplot of mpg-1.png)<!-- -->
 
-####City miles per gallon in function of engine displacement (L)
 
 ```r
-ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = cty))
+ggplot(data = mpg) + geom_smooth(mapping = aes(x = displ, y = hwy))
+```
+
+```
+## `geom_smooth()` using method = 'loess'
 ```
 
 ![](Seminar_2b_files/figure-html/barebones graphing template-1.png)<!-- -->
 
+```r
+ggplot(data = mpg) + geom_density_2d(mapping = aes(x = displ, y = hwy))
+```
 
+![](Seminar_2b_files/figure-html/barebones graphing template-2.png)<!-- -->
+
+####City miles per gallon in function of engine displacement (L)
+
+```r
+ggplot(data = mpg) + geom_point(mapping = aes(x= displ, y = cty))
+```
+
+![](Seminar_2b_files/figure-html/ggplot of mpg for cty-1.png)<!-- -->
+
+####Aestethic mappings
+#####color
+
+```r
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+
+![](Seminar_2b_files/figure-html/aesthetic color-1.png)<!-- -->
+#####size
+
+```r
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, size = class))
+```
+
+```
+## Warning: Using size for a discrete variable is not advised.
+```
+
+![](Seminar_2b_files/figure-html/aesthetic size-1.png)<!-- -->
 
