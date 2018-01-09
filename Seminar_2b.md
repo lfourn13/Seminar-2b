@@ -12,12 +12,17 @@ output:
 #STAT 540 Seminar 2B
 
 #Part 1
+
+install.packages("tidyverse", dependencies = TRUE)
+
 library(tidyverse)
 
 ###Do cars with big engines use more fuel than cars with small engines? 
+
 mpg
 
 ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy))
 
+ggplot(data = <DATA>) + <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
 
 

@@ -130,11 +130,13 @@ $(document).ready(function () {
 </div>
 <div id="part-1" class="section level1">
 <h1>Part 1</h1>
+<p>install.packages(“tidyverse”, dependencies = TRUE)</p>
 <p>library(tidyverse)</p>
 <div id="do-cars-with-big-engines-use-more-fuel-than-cars-with-small-engines" class="section level3">
 <h3>Do cars with big engines use more fuel than cars with small engines?</h3>
 <p>mpg</p>
 <p>ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy))</p>
+<p>ggplot(data = <DATA>) + <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))</p>
 </div>
 </div>
 
