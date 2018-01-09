@@ -305,3 +305,100 @@ ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = 
 ```
 
 ![](Seminar_2b_files/figure-html/average fuel efficiency by class-1.png)<!-- -->
+
+### Average fuel efficiencies for each vehicle class - SCALE REVERSED
+
+```r
+(averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
+```
+
+```
+## # A tibble: 7 x 2
+##   class      fuel_efficiency
+##   <chr>                <dbl>
+## 1 2seater               24.8
+## 2 compact               28.3
+## 3 midsize               27.3
+## 4 minivan               22.4
+## 5 pickup                16.9
+## 6 subcompact            28.1
+## 7 suv                   18.1
+```
+
+```r
+ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + ylab("Fuel Efficiency (miles per gallon)") + xlab("Vehicle Type") + scale_y_reverse()
+```
+
+![](Seminar_2b_files/figure-html/average fuel efficiency by class - REVERSED-1.png)<!-- -->
+
+###Coordinate function
+####flip
+
+```r
+(averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
+```
+
+```
+## # A tibble: 7 x 2
+##   class      fuel_efficiency
+##   <chr>                <dbl>
+## 1 2seater               24.8
+## 2 compact               28.3
+## 3 midsize               27.3
+## 4 minivan               22.4
+## 5 pickup                16.9
+## 6 subcompact            28.1
+## 7 suv                   18.1
+```
+
+```r
+ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + coord_flip()
+```
+
+![](Seminar_2b_files/figure-html/average fuel efficiency by class - Coordinate flip-1.png)<!-- -->
+
+####polar
+
+```r
+(averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
+```
+
+```
+## # A tibble: 7 x 2
+##   class      fuel_efficiency
+##   <chr>                <dbl>
+## 1 2seater               24.8
+## 2 compact               28.3
+## 3 midsize               27.3
+## 4 minivan               22.4
+## 5 pickup                16.9
+## 6 subcompact            28.1
+## 7 suv                   18.1
+```
+
+```r
+ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + coord_polar()
+```
+
+![](Seminar_2b_files/figure-html/average fuel efficiency by class - Coordinate polar-1.png)<!-- -->
+
+###Facet Function
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +geom_point() + facet_wrap(~class)
+```
+
+![](Seminar_2b_files/figure-html/facet function-1.png)<!-- -->
+
+#Part 3: Deliverable
+###Regression of Highway miles per gallon as a function of engine displacement(L) with color points by transmission
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv, size = class)) + geom_point() 
+```
+
+```
+## Warning: Using size for a discrete variable is not advised.
+```
+
+![](Seminar_2b_files/figure-html/deliverable seminar2b-1.png)<!-- -->

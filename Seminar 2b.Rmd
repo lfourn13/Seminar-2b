@@ -75,3 +75,33 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = trans)) + geom_poin
 (averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
 ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + ylab("Fuel Efficiency (miles per gallon)") + xlab("Vehicle Type")
 ```
+
+### Average fuel efficiencies for each vehicle class - SCALE REVERSED
+```{r average fuel efficiency by class - REVERSED}
+(averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
+ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + ylab("Fuel Efficiency (miles per gallon)") + xlab("Vehicle Type") + scale_y_reverse()
+```
+
+###Coordinate function
+####flip
+```{r average fuel efficiency by class - Coordinate flip}
+(averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
+ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + coord_flip()
+```
+
+####polar
+```{r average fuel efficiency by class - Coordinate polar}
+(averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
+ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + coord_polar()
+```
+
+###Facet Function
+```{r facet function}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +geom_point() + facet_wrap(~class)
+```
+
+#Part 3: Deliverable
+###Regression of Highway miles per gallon as a function of engine displacement(L) with color points by transmission
+```{r deliverable seminar2b}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv, size = class)) + geom_point() 
+```
