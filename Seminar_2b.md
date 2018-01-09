@@ -99,6 +99,7 @@ ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color = class)
 ```
 
 ![](Seminar_2b_files/figure-html/aesthetic color-1.png)<!-- -->
+
 #####size
 
 ```r
@@ -111,3 +112,196 @@ ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, size = class))
 
 ![](Seminar_2b_files/figure-html/aesthetic size-1.png)<!-- -->
 
+#Part 2 - The layered Grammar
+##Smooth line
+###Regression of Highway miles per gallon as a function of engine displacement(L)
+
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_point() + geom_smooth()
+```
+
+```
+## `geom_smooth()` using method = 'loess'
+```
+
+![](Seminar_2b_files/figure-html/smooth line-1.png)<!-- -->
+
+##continuous variable in the 3rd dimension
+###Regression of Highway miles per gallon as a function of engine displacement(L) with color points by year
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = year)) + geom_point() + geom_smooth()
+```
+
+```
+## `geom_smooth()` using method = 'loess'
+```
+
+![](Seminar_2b_files/figure-html/regression year-1.png)<!-- -->
+
+###Regression of Highway miles per gallon as a function of engine displacement(L) with color points by transmission
+
+```r
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = trans)) + geom_point() + geom_smooth()
+```
+
+```
+## `geom_smooth()` using method = 'loess'
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : span too small. fewer data values than degrees of freedom.
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 1.9925
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 1.1075
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 0.16606
+```
+
+```
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : span too small.
+## fewer data values than degrees of freedom.
+```
+
+```
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : pseudoinverse used
+## at 1.9925
+```
+
+```
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : neighborhood radius
+## 1.1075
+```
+
+```
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : reciprocal
+## condition number 0
+```
+
+```
+## Warning in predLoess(object$y, object$x, newx = if
+## (is.null(newdata)) object$x else if (is.data.frame(newdata))
+## as.matrix(model.frame(delete.response(terms(object)), : There are other
+## near singularities as well. 0.16606
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : span too small. fewer data values than degrees of freedom.
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : at 1.797
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : radius 9e-06
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : all data on boundary of neighborhood. make span bigger
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 1.797
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 0.003
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : at 2.403
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : radius 9e-06
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : all data on boundary of neighborhood. make span bigger
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 9e-06
+```
+
+```
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : zero-width neighborhood. make span bigger
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : zero-width neighborhood. make span bigger
+```
+
+```
+## Warning: Computation failed in `stat_smooth()`:
+## NA/NaN/Inf in foreign function call (arg 5)
+```
+
+![](Seminar_2b_files/figure-html/regression trans-1.png)<!-- -->
+
+##bar chart
+### Average fuel efficiencies for each vehicle class
+
+```r
+(averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
+```
+
+```
+## # A tibble: 7 x 2
+##   class      fuel_efficiency
+##   <chr>                <dbl>
+## 1 2seater               24.8
+## 2 compact               28.3
+## 3 midsize               27.3
+## 4 minivan               22.4
+## 5 pickup                16.9
+## 6 subcompact            28.1
+## 7 suv                   18.1
+```
+
+```r
+ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + ylab("Fuel Efficiency (miles per gallon)") + xlab("Vehicle Type")
+```
+
+![](Seminar_2b_files/figure-html/average fuel efficiency by class-1.png)<!-- -->

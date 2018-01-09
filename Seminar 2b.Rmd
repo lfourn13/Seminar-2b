@@ -44,8 +44,34 @@ ggplot(data = mpg) + geom_point(mapping = aes(x= displ, y = cty))
 ```{r aesthetic color}
 ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color = class))
 ```
+
 #####size
 ```{r aesthetic size}
 ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, size = class))
 ```
 
+#Part 2 - The layered Grammar
+##Smooth line
+###Regression of Highway miles per gallon as a function of engine displacement(L)
+
+```{r smooth line}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_point() + geom_smooth()
+```
+
+##continuous variable in the 3rd dimension
+###Regression of Highway miles per gallon as a function of engine displacement(L) with color points by year
+```{r regression year}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = year)) + geom_point() + geom_smooth()
+```
+
+###Regression of Highway miles per gallon as a function of engine displacement(L) with color points by transmission
+```{r regression trans}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = trans)) + geom_point() + geom_smooth()
+```
+
+##bar chart
+### Average fuel efficiencies for each vehicle class
+```{r average fuel efficiency by class}
+(averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
+ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + ylab("Fuel Efficiency (miles per gallon)") + xlab("Vehicle Type")
+```
