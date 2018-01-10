@@ -21,10 +21,13 @@ library(tidyverse)
 
 ###Do cars with big engines use more fuel than cars with small engines? 
 ####mpg dataset
+
 ```{r mpg dataframe}
 mpg
 ```
+
 ####Highway miles per gallon in function of engine displacement (L)
+
 ```{r ggplot of mpg}
 ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy))
 ```
@@ -35,17 +38,20 @@ ggplot(data = mpg) + geom_density_2d(mapping = aes(x = displ, y = hwy))
 ```
 
 ####City miles per gallon in function of engine displacement (L)
+
 ```{r ggplot of mpg for cty}
 ggplot(data = mpg) + geom_point(mapping = aes(x= displ, y = cty))
 ```
 
 ####Aestethic mappings
 #####color
+
 ```{r aesthetic color}
 ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, color = class))
 ```
 
 #####size
+
 ```{r aesthetic size}
 ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy, size = class))
 ```
@@ -60,23 +66,27 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + geom_point() + geom_smoo
 
 ##continuous variable in the 3rd dimension
 ###Regression of Highway miles per gallon as a function of engine displacement(L) with color points by year
+
 ```{r regression year}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = year)) + geom_point() + geom_smooth()
 ```
 
 ###Regression of Highway miles per gallon as a function of engine displacement(L) with color points by transmission
+
 ```{r regression trans}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = trans)) + geom_point() + geom_smooth()
 ```
 
 ##bar chart
 ### Average fuel efficiencies for each vehicle class
+
 ```{r average fuel efficiency by class}
 (averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
 ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + ylab("Fuel Efficiency (miles per gallon)") + xlab("Vehicle Type")
 ```
 
 ### Average fuel efficiencies for each vehicle class - SCALE REVERSED
+
 ```{r average fuel efficiency by class - REVERSED}
 (averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
 ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + ylab("Fuel Efficiency (miles per gallon)") + xlab("Vehicle Type") + scale_y_reverse()
@@ -84,24 +94,28 @@ ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = 
 
 ###Coordinate function
 ####flip
+
 ```{r average fuel efficiency by class - Coordinate flip}
 (averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
 ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + coord_flip()
 ```
 
 ####polar
+
 ```{r average fuel efficiency by class - Coordinate polar}
 (averageEfficiency <- mpg %>% group_by(class) %>% summarise(fuel_efficiency = mean(hwy)))
 ggplot(averageEfficiency) + geom_bar(aes(x = class, y = fuel_efficiency, fill = class), stat = "identity") + coord_polar()
 ```
 
 ###Facet Function
+
 ```{r facet function}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +geom_point() + facet_wrap(~class)
 ```
 
 #Part 3: Deliverable
 ###Regression of Highway miles per gallon as a function of engine displacement(L) with color points by transmission
+
 ```{r deliverable seminar2b}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv, size = class)) + geom_point() 
 ```
